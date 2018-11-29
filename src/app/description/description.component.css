@@ -1,0 +1,180 @@
+/* FetchDescriptionsComponent's private CSS styles 
+   Cloned from heroes.component.css
+*/
+.selected {
+    background-color: #CFD8DC !important;
+    color: white;
+}
+
+/*
+.descriptions {
+    margin: 0 0 2em 0;
+    list-style-type: none;
+    padding: 0;
+    width:;
+}
+
+.descriptions li {
+    cursor: pointer;
+    position: relative;
+    left: 0;
+    background-color: #EEE;
+    margin: .5em;
+    padding: .3em 0;
+    height: 1.6em;
+    border-radius: 4px;
+}
+
+.descriptions li.selected:hover {
+    background-color: #BBD8DC !important;
+    color: white;
+}
+
+.descriptions li:hover {
+    color: #607D8B;
+    background-color: #DDD;
+    left: .1em;
+}
+
+.descriptions table > tbody > tr > td {
+    cursor: pointer;
+    position: relative;
+    left: 0;
+    background-color: #EEE;
+    margin: .5em;
+    padding: .3em 0;
+    height: 1.6em;
+    border-radius: 4px;
+}
+*/
+
+td {
+  cursor: pointer;
+  position: relative;
+  left: 0;
+  /*background-color: #EEE; */
+  margin: .5em;
+  padding: .3em 0;
+  height: 1.6em;
+  border-radius: 4px;
+}
+
+td.selected:hover {
+    background-color: #BBD8DC !important;
+    color: white;
+}
+
+td:hover {
+    color: #607D8B;
+    background-color: #DDD;
+    left: .1em;             /* td would move to the right by 0.1em */
+}
+
+.text {
+    position: relative;
+    top: -3px;
+}
+
+.badge {
+    display: inline-block;
+    font-size: small;
+    color: white;
+    padding: 0.8em 0.7em 0 0.7em;
+    background-color: #607D8B;
+    line-height: 1em;
+    position: relative;
+    left: -1px;
+    top: -4px;
+    height: 1.8em;
+    margin-right: .8em;
+    border-radius: 4px 0 0 4px;
+}
+
+/* Tooltip container for glyphicon-check */
+.glyphicon-check {
+  position: relative;
+  display: inline-block;
+  /* border-bottom: 1px dotted black;  If you want dots under the hoverable text */
+} 
+
+  /* Tooltip text */
+  .glyphicon-check .tooltiptext {
+    visibility: hidden;
+    width: 120px;
+    background-color: #555;
+    color: #fff;
+    text-align: center;
+    padding: 5px 0;
+    border-radius: 6px;
+    /* Position the tooltip text */
+    position: absolute;
+    z-index: 1;
+    bottom: 125%;
+    left: 50%;
+    margin-left: -60px;
+    /* Fade in tooltip */
+    opacity: 0;
+    transition: opacity 1s;
+  }
+
+  /* Tooltip arrow */
+  .glyphicon-check .tooltiptext::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #555 transparent transparent transparent;
+  }
+
+  /* Show the tooltip text when you mouse over the tooltip container */
+  .glyphicon-check:hover .tooltiptext {
+    visibility: visible;
+    opacity: 1;
+  }
+
+.glyphicon-trash {
+  position: relative;
+  display: inline-block;
+  /* border-bottom: 1px dotted black;  If you want dots under the hoverable text */
+}
+
+  /* Tooltip text for glyphicon-trash */
+  .glyphicon-trash .tooltiptext {
+    visibility: hidden;
+    width: 120px;
+    background-color: #555;
+    color: #fff;
+    text-align: center;
+    padding: 5px 0;
+    border-radius: 6px;
+    /* Position the tooltip text */
+    position: absolute;
+    z-index: 1;
+    bottom: 125%;
+    left: 50%;
+    margin-left: -60px;
+    /* Fade in tooltip */
+    opacity: 0;
+    transition: opacity 1s;
+  }
+
+  /* Tooltip arrow */
+  .glyphicon-trash .tooltiptext::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #555 transparent transparent transparent;
+  }
+
+  /* Show the tooltip text when you mouse over the tooltip container */
+  .glyphicon-trash:hover .tooltiptext {
+    visibility: visible;
+    opacity: 1;
+  }

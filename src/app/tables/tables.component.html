@@ -1,0 +1,28 @@
+<!--
+<h2>{{ table.name }} Details</h2>
+<div><span>id: </span>{{table.id}}</div>
+<div><span>name: </span>{{table.name | uppercase}}</div>
+--> 
+
+
+<h2>TrackMED Tables</h2>
+
+<div>
+  <label>Table name:
+    <input #tableName />
+  </label>
+  
+  <button (click)="add(tableName.value); tableName.value=''">
+    add
+  </button>
+</div>
+
+<ul class="tables">
+  <li *ngFor="let table of tables">
+    <a routerLink="/detail/{{table.id}}">
+      <span class="badge">{{table.id}}</span> {{table.name}}
+    </a>
+    <button class="delete" title="delete table"
+    (click)="delete(table)">x</button>
+  </li>
+</ul>

@@ -1,0 +1,12 @@
+/* Added */
+.table-light > thead > tr > th,
+.table-light > tbody > tr > th,
+.table-light > tfoot > tr > th,
+.table-light > thead > tr > td,
+.table-light > tbody > tr > td,
+.table-light > tfoot > tr > td {
+  line-height: 1 !important;
+  font-size: smaller !important;
+  vertical-align: top;
+  font-weight:normal !important
+} 

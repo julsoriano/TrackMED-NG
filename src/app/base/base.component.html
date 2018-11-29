@@ -1,0 +1,67 @@
+<p *ngIf="!items"><em>loading ...</em></p>
+
+<h1>
+  <span>{{ title }}</span>
+  <span> Table</span>
+</h1>
+
+<div *ngIf="selectedItem">
+
+  <h2>{{ selectedItem.desc | uppercase }} Details</h2>
+  <!--<div><span>id: </span>{{selectedItem.id}}</div> -->
+  <div>
+    <label>
+      Description:
+      <input [(ngModel)]="selectedItem.desc" placeholder="desc">
+    </label>
+  </div>
+  <div>
+    <label>
+      Created On:
+      <input [(ngModel)]="selectedItem.createdAtUtc" placeholder="createdAtUtc">
+    </label>
+  </div>
+
+</div>
+
+<div>
+  <!-- <table id="example" class='table' *ngIf="items"> -->
+  <table id="nestedTable" class="table table-striped table-condensed table-hover dataTable no-footer" cellspacing="0" width="100%" role="grid" aria-describedby="DataTables_Table_1_info" style="width: 100%;" *ngIf="items">
+    <thead>
+      <tr role="row">
+        <th></th>
+        <th>Sequence #</th>
+        <th>Id</th>
+        <th>Description</th>
+        <th>Created Date</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- The Angular class binding makes it easy to add and remove a CSS class conditionally.
+       Just add [class.some-css-class]="some-condition" to the element you want to style
+
+       When the current row item is the same as the selectedItem, Angular adds the selected CSS class.
+       When the two items are different, Angular removes the class.
+       See https://angular.io/tutorial/toh-pt2
+      -->
+      <tr *ngFor="let item of items; let i = index;"
+          [class.selected]="item === selectedItem">
+        <td class="details-control glyphicon glyphicon-plus" (click)="showRelatedTable($event, item)"></td>
+        <td>{{ i + 1 }}</td>
+        <td>{{ item.id }}</td>
+        <td>{{ item.desc }}</td>
+        <td>{{ item.createdAtUtc | date }}</td>
+        <td>
+          <button class='glyphicon glyphicon-trash' (click)="onDelete(item, i)">
+            <span class="tooltiptext">Delete</span>
+          </button>
+        </td>
+        <td>
+          <button class='glyphicon glyphicon-check' (click)="onSelect(item)">
+            <span class="tooltiptext">{{ editText }}</span>
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
