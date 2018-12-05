@@ -1,17 +1,16 @@
 import { Component, OnInit } from '@angular/core';
-import { AppService } from './app.service';
+import { AppService } from '../app.service';
 
 @Component({
   selector: 'my-popup',
-  templateUrl: './popup.component.html'
+  templateUrl: './nestedTable.component.html',
 })
 
-export class PopupComponent implements OnInit {
+export class NestedComponent implements OnInit {
   private items: tblComponent[];
   private item: tblComponent;
-  private tblName: any;
   itemUrl = 'http://localhost:5000/';
-  itemApi = 'api/Owner';
+  itemApi = 'api/Component';
   options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
 
 constructor (
@@ -20,7 +19,7 @@ constructor (
 {}
 
 ngOnInit() {
-  this.getItems(this.itemApi);
+this.getItems(this.itemApi);
 }
 
 compareFn = (a, b) => {
@@ -29,20 +28,13 @@ compareFn = (a, b) => {
   return 0;
 };
 
-
 getItems(itemApi:string): void {
-  this.tblName = /api\/(.+$)/.exec(itemApi);
-  let urlComplete = this.itemUrl + 'api/Component/' + this.tblName[1] + '/' + '5b0e49451bd0033950d14444';
-  
-  this.appService.getItems(urlComplete)
-    .subscribe(items => {
-      this.items = items.sort(this.compareFn);  
-      console.log(this.items);
-    })
+this.appService.getItems(this.itemUrl + itemApi)
+    .subscribe(items => {this.items = items.sort(this.compareFn); })
   }
 }
 
-export interface tblComponent {
+interface tblComponent {
     id: string;
     assetnumber: string;
     imte: string;

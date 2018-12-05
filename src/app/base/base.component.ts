@@ -5,6 +5,11 @@ import { element, elementClassProp } from '@angular/core/src/render3';
 import { isNullOrUndefined } from 'util';
 //import { type } from 'os';
 
+import { PopupService } from '../popup.service';
+import { PopupComponent } from '../popup.component';
+import { NestedComponent } from '../nestedTable/nestedTable.component';
+import { NgElement, WithProperties } from '@angular/elements';
+
 @Component({
   selector: 'app-base',
   templateUrl: './base.component.html',
@@ -31,7 +36,8 @@ export class BaseComponent {
   */
 
 constructor(
-  protected appService: AppService
+  protected appService: AppService,
+  public popup: PopupService
 ) 
 {    
   // this.showRelatedTable = this.showRelatedTable.bind(this);
@@ -74,6 +80,7 @@ constructor(
   // Dynamically compose nested table
   createNestedTable(id:string, elGP:Node, elP:Node, headings:any) {
 
+    /* -------- START:  C R E A T E   T A B L E
     let urlComplete = this.itemUrl + 'api/Component/' + this.tblName[1] + '/' + id;
     
     this.appService.getItems(urlComplete)
@@ -86,7 +93,7 @@ constructor(
       this.tr = document.createElement("tr");
       var td = document.createElement("td");
       td.setAttribute("colspan", "4");
-      
+    
       var tbl = document.createElement("table");
       tbl.classList.add('table', 'table-light', 'table-striped', 'table-condensed', 'table-hover', 'table-component');
 
@@ -150,11 +157,39 @@ constructor(
       // put the <tbody> in the <table>
       tbl.appendChild(tblBody);
       td.appendChild(tbl);
-      this.tr.appendChild(td);
 
+      // -------- END: C R E A T E   T A B L E 
+
+      this.tr.appendChild(td);
       elGP.insertBefore(this.tr, elP.nextSibling); 
       // return this.tr;  
-    });
+    }); */
+
+
+    // -------- START:  T E S T
+    this.tr = document.createElement("tr");
+    var td = document.createElement("td");
+    td.setAttribute("colspan", "4");
+    let div = document.createElement("div");
+    
+    // Create element
+    const popupEl: NgElement & WithProperties<PopupComponent> = document.createElement('popup-element') as any;
+    // const nestedEl: NgElement & WithProperties<NestedComponent> = document.createElement('nested-element') as any;
+
+    // Add to the DOM
+    div.appendChild(popupEl);    
+    // div.appendChild(nestedEl); 
+    
+    /*
+    let span = document.createElement("span");
+    span.appendChild(document.createTextNode("No records to display"));
+    div.appendChild(span);
+    */ 
+
+    td.appendChild(div);
+    this.tr.appendChild(td);
+    elGP.insertBefore(this.tr, elP.nextSibling); 
+    // -------- END:  T E S T
   };
 
   onSelect(item: any): void {
@@ -190,7 +225,7 @@ constructor(
     let elP: Node = event.target.parentNode; // Parent Node: tr
     let elGP: Node = elP.parentNode;         // Parent Node: tbody
     let elList = event.target.classList;
-    
+
     if (elList.contains('glyphicon-plus')) {
         
       elList.replace('glyphicon-plus', 'glyphicon-minus');
@@ -200,6 +235,7 @@ constructor(
 
       // appends child <table> into table <tbody>
       this.createNestedTable(id, elGP, elP, this.headings);
+      // this.popup.showAsElement("Hello");
 
       this.elListSave = elList;
 

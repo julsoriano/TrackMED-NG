@@ -26,7 +26,7 @@
 
 <div>
   <!-- <table id="example" class='table' *ngIf="items"> -->
-  <table id="nestedTable" class="table table-striped table-condensed table-hover dataTable no-footer" cellspacing="0" width="100%" role="grid" aria-describedby="DataTables_Table_1_info" style="width: 100%;" *ngIf="items">
+  <table class="table table-striped table-condensed table-hover dataTable no-footer" cellspacing="0" width="100%" role="grid" aria-describedby="DataTables_Table_1_info" style="width: 100%;" *ngIf="items">
     <thead>
       <tr role="row">
         <th></th>
@@ -43,6 +43,9 @@
        When the current row item is the same as the selectedItem, Angular adds the selected CSS class.
        When the two items are different, Angular removes the class.
        See https://angular.io/tutorial/toh-pt2
+
+       <td class="details-control glyphicon glyphicon-plus" (click)="showRelatedTable($event, item)"></td>
+       <td class="details-control glyphicon glyphicon-plus" (click)="popup.showAsElement('Hello')"></td>
       -->
       <tr *ngFor="let item of items; let i = index;"
           [class.selected]="item === selectedItem">

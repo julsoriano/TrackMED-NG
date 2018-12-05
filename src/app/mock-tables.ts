@@ -10,5 +10,6 @@ export const Tables: Table[] = [
   { id: 17, name: 'ServiceProvider' },
   { id: 18, name: 'Status' },
   { id: 19, name: 'SystemDescription' },
-  { id: 20, name: 'SystemTable' }
+  { id: 20, name: 'SystemTable' },
+  { id: 21, name: 'Trigger' }
 ];

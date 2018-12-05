@@ -14,6 +14,8 @@ import { Model_ManufacturerComponent } from './modelmanufacturer/modelmanufactur
 import { OwnerComponent } from './owner/owner.component';
 import { StatusComponent } from './status/status.component';
 
+import { TriggerComponent } from './trigger.component';
+
 const routes: Routes = [
   { path: '', component: HomeComponent, pathMatch: 'full'  },
   // { path: 'dashboard', component: DashboardComponent },
@@ -24,6 +26,7 @@ const routes: Routes = [
   { path: 'Model_Manufacturer', component: Model_ManufacturerComponent },
   { path: 'Owner', component: OwnerComponent },
   { path: 'Status', component: StatusComponent },
+  { path: 'Trigger', component: TriggerComponent },
   { path: '**', component: PageNotFoundComponent }
 ];
 

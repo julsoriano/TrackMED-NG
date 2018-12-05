@@ -1,10 +1,10 @@
 
 import { ApplicationRef, ComponentFactoryResolver, Injectable, Injector } from '@angular/core';
 import { NgElement, WithProperties } from '@angular/elements';
-import { PopupComponent } from './popup.component';
-
+import { PopupComponent } from './popup.component.orig';
 
 @Injectable()
+
 export class PopupService {
   constructor(private injector: Injector,
               private applicationRef: ApplicationRef,
@@ -14,6 +14,7 @@ export class PopupService {
   // before adding the popup to the DOM.
   showAsComponent(message: string) {
     // Create element
+    alert(message);
     const popup = document.createElement('popup-component');
 
     // Create the component and wire it up with the element
@@ -37,7 +38,8 @@ export class PopupService {
   }
 
   // This uses the new custom-element method to add the popup to the DOM.
-  showAsElement(message: string) {
+  // showAsElement() {  
+  showAsElement(message: string) {  
     // Create element
     const popupEl: NgElement & WithProperties<PopupComponent> = document.createElement('popup-element') as any;
 
@@ -46,7 +48,7 @@ export class PopupService {
 
     // Set the message
     popupEl.message = message;
-
+    alert(message);
     // Add to the DOM
     document.body.appendChild(popupEl);
   }
