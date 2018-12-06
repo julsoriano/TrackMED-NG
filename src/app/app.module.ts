@@ -22,8 +22,8 @@ import { TablesComponent } from './tables/tables.component';
 import { TableDetailComponent } from './table-detail/table-detail.component';
 
 import { PopupComponent } from './popup.component';
-import { TriggerComponent } from './trigger.component';
-import { PopupService } from './popup.service';
+
+// import { PopupService } from './popup.service';
 
 // Material support
 import { MatDialogModule } from '@angular/material';
@@ -58,8 +58,7 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
     Model_ManufacturerComponent,
     OwnerComponent,
     StatusComponent,
-    PopupComponent, 
-    TriggerComponent
+    PopupComponent
   ],
 
   imports: [
@@ -85,7 +84,7 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
     NO_ERRORS_SCHEMA
   ],
   // no need to place any providers due to the `providedIn` flag...
-  providers: [PopupService],
+  providers: [],
   bootstrap: [AppComponent],
   entryComponents: [PopupComponent]
 })

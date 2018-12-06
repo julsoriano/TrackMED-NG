@@ -1,13 +1,10 @@
 import { Component, OnInit, Inject } from '@angular/core';
 //import { AppInjector } from '../app-injector.service';
 import { AppService } from '../app.service';
-import { element, elementClassProp } from '@angular/core/src/render3';
 import { isNullOrUndefined } from 'util';
 //import { type } from 'os';
 
-import { PopupService } from '../popup.service';
 import { PopupComponent } from '../popup.component';
-import { NestedComponent } from '../nestedTable/nestedTable.component';
 import { NgElement, WithProperties } from '@angular/elements';
 
 @Component({
@@ -30,23 +27,16 @@ export class BaseComponent {
   private tblName: any;
   private tr: Element;
   private elListSave: any;
-  /** 
-  private comps: tblComponent[];
-  private comp: tblComponent;
-  */
 
 constructor(
   protected appService: AppService,
-  public popup: PopupService
 ) 
 {    
-  // this.showRelatedTable = this.showRelatedTable.bind(this);
   // Manually retrieve the dependencies from the injector so that constructor has no dependencies that must be passed in from child
   // No longer necessary because of angular's DI
   // const injector = AppInjector.getInjector();    
 
   // this.loggingService = injector.get(LoggingService);    
-  // this.appService = injector.get(AppService); 
 }
 
   // protected logError(errorMessage: string) { . . . } 
@@ -169,17 +159,19 @@ constructor(
     // -------- START:  T E S T
     this.tr = document.createElement("tr");
     var td = document.createElement("td");
-    td.setAttribute("colspan", "4");
+    td.setAttribute("colspan", "5");
     let div = document.createElement("div");
     
     // Create element
     const popupEl: NgElement & WithProperties<PopupComponent> = document.createElement('popup-element') as any;
-    // const nestedEl: NgElement & WithProperties<NestedComponent> = document.createElement('nested-element') as any;
+
+    // Set the message
+    popupEl.message = this.tblName[1];
+    popupEl.id = id;
 
     // Add to the DOM
     div.appendChild(popupEl);    
-    // div.appendChild(nestedEl); 
-    
+       
     /*
     let span = document.createElement("span");
     span.appendChild(document.createTextNode("No records to display"));
@@ -221,7 +213,7 @@ constructor(
 
   showRelatedTable(event: any , item): void {
 
-    let id: string = item.id;
+    let id:string = item.id;
     let elP: Node = event.target.parentNode; // Parent Node: tr
     let elGP: Node = elP.parentNode;         // Parent Node: tbody
     let elList = event.target.classList;
@@ -235,8 +227,7 @@ constructor(
 
       // appends child <table> into table <tbody>
       this.createNestedTable(id, elGP, elP, this.headings);
-      // this.popup.showAsElement("Hello");
-
+ 
       this.elListSave = elList;
 
     } else {

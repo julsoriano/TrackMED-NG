@@ -3,7 +3,6 @@ import { Component } from '@angular/core';
 
 import { Injector } from '@angular/core';
 import { createCustomElement } from '@angular/elements';
-import { PopupService } from './popup.service';
 import { PopupComponent } from './popup.component';
 import { NestedComponent } from '../app/nestedTable/nestedTable.component';
 
@@ -23,10 +22,11 @@ import { NestedComponent } from '../app/nestedTable/nestedTable.component';
 export class AppComponent {
   
   constructor(injector: Injector, 
-    public popup: PopupService
-    ) 
+        ) 
   {
-    // Convert `PopupComponent` to a custom element.
+    // Custom Elements: https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_custom_elements
+  
+    // Convert `PopupComponent` to an autonomous custom element.
     const PopupElement = createCustomElement(PopupComponent, {injector});
     //const NestedElement = createCustomElement(PopupComponent, {injector});
 
