@@ -8,7 +8,7 @@ import { AppService } from '../app.service';
   <p *ngIf="!items"><em>loading ...</em></p>
   <span hidden>Popup: {{ message }} {{ id }} </span>
   <div>
-      <table id="nestedTable" class='table table-light table-striped table-condensed table-hover table-component'>
+      <table id="nestedTable" class='table table-light table-striped table-condensed table-hover'>
           <thead>
               <tr role="row">
                   <th>Sequence #</th>

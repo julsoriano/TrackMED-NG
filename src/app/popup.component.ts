@@ -30,13 +30,13 @@ import { AppService } from './app.service';
                   <td>{{ item.assetnumber }}</td>
                   <td>{{ item.imte }}</td>
                   <td>{{ item.serialnumber }}</td>
-                  <td>{{ item.description.desc }}</td> 
-                  <td>{{ item.owner.desc }}</td>
-                  <td>{{ item.status !== null?item.status.desc:'' }}</td>
-                  <td>{{ item.model_Manufacturer.desc }}</td>
-                  <td>{{ item.providerOfService !== null?item.providerOfService.desc:'' }}</td>                                      
-                  <td>{{ item.calibrationDate | date }}</td>
-                  <td>{{ item.maintenanceDate | date }}</td>
+                  <td>{{ item.description !== null ? item.description.desc : '' }}</td> 
+                  <td>{{ item.owner !== null ? item.owner.desc : '' }}</td>
+                  <td>{{ item.status !== null ? item.status.desc : '' }}</td>
+                  <td>{{ item.model_Manufacturer !== null ? item.model_Manufacturer.desc : '' }}</td>
+                  <td>{{ item.providerOfService !== null ? item.providerOfService.desc : '' }}</td>                                      
+                  <td>{{ item.calibrationDate !== null ? (item.calibrationDate | date) :'' }}</td>
+                  <td>{{ item.maintenanceDate !== null ? (item.maintenanceDate | date) :'' }}</td>
               </tr>
           </tbody>
       </table>

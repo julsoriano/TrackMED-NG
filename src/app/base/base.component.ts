@@ -82,7 +82,7 @@ constructor(
       // create a <table> element
       this.tr = document.createElement("tr");
       var td = document.createElement("td");
-      td.setAttribute("colspan", "4");
+      td.setAttribute("colspan", "5");
     
       var tbl = document.createElement("table");
       tbl.classList.add('table', 'table-light', 'table-striped', 'table-condensed', 'table-hover', 'table-component');
@@ -90,15 +90,25 @@ constructor(
       // create a <thead> element and its child nodes (<tr> and <th>)
       var tblHead = document.createElement("thead");
       var rowH = document.createElement("tr");
-
+      
+      // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/getOwnPropertyNames
       const fieldNames = Object.getOwnPropertyNames(headings);
 
+      var cell = document.createElement("th");
+      cell.style.color = "blue";
+
+      // this will be placed on the 1st column by default
+      var cellText = document.createTextNode("Sequence#");
+      cell.appendChild(cellText);
+      rowH.appendChild(cell);
+
       for (var fn of fieldNames) {
+        // e.g., if property name = 'assetnumber', then celltext = 'Asset#'
         var hdg = headings[fn];
         if (hdg != null) {
-          var cell = document.createElement("th");
+          cell = document.createElement("th");
           cell.style.color = "blue";
-          var cellText = document.createTextNode(hdg);
+          cellText = document.createTextNode(hdg);
           cell.appendChild(cellText);
           rowH.appendChild(cell);
         }            
@@ -111,9 +121,18 @@ constructor(
       // create a <tbody> element and its child nodes (<tr> and <td>)
       var tblBody = document.createElement("tbody");
       const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+      let idx = 0;
+
       for (var x of data) {
 
+        ++idx;
         var row = document.createElement("tr"); 
+        cell = document.createElement("td");
+
+        // this will be placed on the 1st column by default
+        cellText = document.createTextNode(idx.toString());
+        cell.appendChild(cellText);
+        row.appendChild(cell);
         
         // https://stackoverflow.com/questions/37673454/javascript-iterate-key-value-from-json/37673499                
         Object.keys(headings).forEach(function(key) {
@@ -126,13 +145,17 @@ constructor(
             headings[key] === 'Status' ||
             headings[key] === 'Model/Manufacturer' ||
             headings[key] === 'Service Provider' ) {
+            
+            // this will be placed on the next column in sequence
+            cellText = x[key] !== null ? document.createTextNode(x[key].desc) : document.createTextNode('');
 
-            cellText = x[key] !== null?document.createTextNode(x[key].desc):document.createTextNode('');
           } else if( headings[key] === 'Calibration Due Date' || 
                      headings[key] === 'Maintenance Due Date')  {
                      
+                    // this will be placed on the next column in sequence
                      cellText = x[key] !== null ? document.createTextNode( new Date(x[key]).toLocaleDateString('en-GB', options) ) : document.createTextNode('');                        
           } else {
+            // this will be placed on the next column in sequence
             cellText = document.createTextNode(x[key]);
           }
 
