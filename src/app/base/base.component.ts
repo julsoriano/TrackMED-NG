@@ -193,7 +193,7 @@ constructor(
     popupEl.id = id;
 
     // Add to the DOM
-    div.appendChild(popupEl);    
+    td.appendChild(popupEl);    
        
     /*
     let span = document.createElement("span");

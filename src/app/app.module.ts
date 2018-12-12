@@ -18,8 +18,8 @@ import { Model_ManufacturerComponent } from './modelmanufacturer/modelmanufactur
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { OwnerComponent } from './owner/owner.component';
 import { StatusComponent } from './status/status.component';
-import { TablesComponent } from './tables/tables.component';
-import { TableDetailComponent } from './table-detail/table-detail.component';
+// import { TablesComponent } from './tables/tables.component';
+// import { TableDetailComponent } from './table-detail/table-detail.component';
 
 import { PopupComponent } from './popup.component';
 
@@ -49,8 +49,8 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
     BaseComponent, 
     HomeComponent,
     NavMenuComponent,
-    TablesComponent,
-    TableDetailComponent,   
+    // TablesComponent,
+    // TableDetailComponent,   
 
   // TrackMED Tables
     DescriptionComponent,

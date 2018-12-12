@@ -1,7 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 
 /* https://material.angular.io/guide/theming */
-@import '../node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css'; 
+// @import '../node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css'; 
 @import '../src/app/tables/tables.component.css';
 @import '../src/styles.ce.scss';
 /*{
@@ -13,8 +13,10 @@
 }*/
 
 $font-family: Arial, Helvetica, sans-serif;
-$primary-color: #333;
 $font-size: 12px;
+$line-height: 1;
+$primary-color: #333;
+$background-color: #fff;
 
 body {
     padding-top: 50px;
@@ -23,9 +25,9 @@ body {
     /* Added jss */
     font-family: 100% $font-family;
     font-size: $font-size;
-    line-height: 1;
+    line-height: $line-height;
     color: $primary-color;
-    background-color: #fff;
+    background-color: $background-color;
 }
 
 /* Wrapping element */
@@ -33,13 +35,4 @@ body {
 .body-content {
     padding-left: 15px;
     padding-right: 15px;
-}
-
-
-/* Hide/rearrange for smaller screens */
-@media screen and (max-width: 767px) {
-    /* Hide captions */
-    .carousel-caption {
-        display: none
-    }
 }

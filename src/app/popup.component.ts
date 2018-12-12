@@ -7,7 +7,7 @@ import { AppService } from './app.service';
   template: `
   <p *ngIf="!items"><em>loading ...</em></p>
   <span hidden>Popup: {{ message }} {{ id }} </span>
-  <div>
+  
       <table id="nestedTable" class='table table-light table-striped table-condensed table-hover table-component'>
           <thead>
               <tr role="row">
@@ -40,7 +40,7 @@ import { AppService } from './app.service';
               </tr>
           </tbody>
       </table>
-  </div>  
+   
   `
 })
 
@@ -91,7 +91,7 @@ getItems(): void {
   this.appService.getItems(urlComplete)
     .subscribe(items => {
       this.items = items.sort(this.compareFn);  
-      console.log(this.items);
+      // console.log(this.items);
     })
   }
 }
