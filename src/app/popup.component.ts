@@ -11,7 +11,7 @@ import { AppService } from './app.service';
       <table id="nestedTable" class='table table-light table-striped table-condensed table-hover table-component'>
           <thead>
               <tr role="row">
-                  <th>Sequence #</th>
+                  <th>Index</th>
                   <th>Asset#</th>
                   <th>IMTE</th>
                   <th>Serial Number</th>

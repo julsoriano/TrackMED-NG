@@ -10,7 +10,7 @@ import { NgElement, WithProperties } from '@angular/elements';
 @Component({
   selector: 'app-base',
   templateUrl: './base.component.html',
-  styleUrls: ['./base.component.scss']
+  // styleUrls: ['./base.component.scss']
 })
 
 // Discussion: https://blogs.msdn.microsoft.com/premier_developer/2018/06/17/angular-how-to-simplify-components-with-typescript-inheritance/
@@ -182,7 +182,7 @@ constructor(
     // -------- START:  T E S T
     this.tr = document.createElement("tr");
     var td = document.createElement("td");
-    td.setAttribute("colspan", "5");
+    td.setAttribute("colspan", "4");
     let div = document.createElement("div");
     
     // Create element
@@ -195,7 +195,7 @@ constructor(
     // Add to the DOM
     td.appendChild(popupEl);    
        
-    /*
+    /* Uncomment for testing
     let span = document.createElement("span");
     span.appendChild(document.createTextNode("No records to display"));
     div.appendChild(span);

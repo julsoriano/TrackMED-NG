@@ -1,6 +1,5 @@
-/* StatusComponent's private CSS styles 
-   Cloned from heroes.component.css
-*/
+/* Tables.Component.CSS: Applies to tables specifically */
+/* background-color: #EEE; */
 .selected {
   background-color: #CFD8DC !important;
   color: white;
@@ -10,7 +9,6 @@ td {
 cursor: pointer;
 position: relative;
 left: 0;
-/*background-color: #EEE; */
 margin: .5em;
 padding: .3em 0;
 height: 1.6em;
@@ -50,9 +48,9 @@ td:hover {
 
 /* Tooltip container for glyphicon-check */
 .glyphicon-check {
-position: relative;
-display: inline-block;
-/* border-bottom: 1px dotted black;  If you want dots under the hoverable text */
+  position: relative;
+  display: inline-block;
+  /* border-bottom: 1px dotted black;  If you want dots under the hoverable text */
 } 
 
 /* Tooltip text */
@@ -137,7 +135,7 @@ display: inline-block;
   opacity: 1;
 }
 
-/* Added */
+/* Used in Popup Custom Element */
 .table-light > thead > tr > th,
 .table-light > tbody > tr > th,
 .table-light > tfoot > tr > th,
