@@ -3,7 +3,8 @@ import { Component } from '@angular/core';
 
 import { Injector } from '@angular/core';
 import { createCustomElement } from '@angular/elements';
-import { PopupComponent } from './popup.component';
+import { MedComponentPopupComponent } from '../app/popup/medcomponent.popup';
+import { SystemPopupComponent } from '../app/popup/system.popup';
 
 /*
 @NgModule({
@@ -20,16 +21,17 @@ import { PopupComponent } from './popup.component';
 
 export class AppComponent {
   
-  constructor(injector: Injector, 
-        ) 
+  constructor(injector: Injector) 
   {
     // Custom Elements: https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_custom_elements
   
-    // Convert `PopupComponent` to an autonomous custom element.
-    const PopupElement = createCustomElement(PopupComponent, {injector});
+    // Convert popup components to autonomous custom elements
+    const MedComponentPopupElement = createCustomElement(MedComponentPopupComponent, {injector});
+    const SystemPopupElement = createCustomElement(SystemPopupComponent, {injector});
 
-    // Register the custom element with the browser.
-    customElements.define('popup-element', PopupElement);
+    // Register custom elements with the browser.
+    customElements.define('medcomponentpopup-element', MedComponentPopupElement);
+    customElements.define('systempopup-element', SystemPopupElement);
 
   }
   

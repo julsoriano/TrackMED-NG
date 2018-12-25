@@ -18,12 +18,10 @@ import { Model_ManufacturerComponent } from './modelmanufacturer/modelmanufactur
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { OwnerComponent } from './owner/owner.component';
 import { StatusComponent } from './status/status.component';
-// import { TablesComponent } from './tables/tables.component';
-// import { TableDetailComponent } from './table-detail/table-detail.component';
 
-import { PopupComponent } from './popup.component';
-
-// import { PopupService } from './popup.service';
+// Custom Elements
+import { MedComponentPopupComponent } from './popup/medcomponent.popup';
+import { SystemPopupComponent } from './popup/system.popup';
 
 // Material support
 import { MatDialogModule } from '@angular/material';
@@ -49,8 +47,6 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
     BaseComponent, 
     HomeComponent,
     NavMenuComponent,
-    // TablesComponent,
-    // TableDetailComponent,   
 
   // TrackMED Tables
     DescriptionComponent,
@@ -58,7 +54,10 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
     Model_ManufacturerComponent,
     OwnerComponent,
     StatusComponent,
-    PopupComponent
+
+  // Custom Elements
+    MedComponentPopupComponent,
+    SystemPopupComponent
   ],
 
   imports: [
@@ -86,6 +85,9 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
   // no need to place any providers due to the `providedIn` flag...
   providers: [],
   bootstrap: [AppComponent],
-  entryComponents: [PopupComponent]
+  entryComponents: [
+    MedComponentPopupComponent,
+    SystemPopupComponent
+  ]
 })
 export class AppModule { }

@@ -4,7 +4,8 @@ import { AppService } from '../app.service';
 import { isNullOrUndefined } from 'util';
 //import { type } from 'os';
 
-import { PopupComponent } from '../popup.component';
+import { MedComponentPopupComponent } from '../popup/medcomponent.popup';
+import { SystemPopupComponent } from '../popup/system.popup';
 import { NgElement, WithProperties } from '@angular/elements';
 
 @Component({
@@ -46,7 +47,8 @@ constructor(
   compareFn = (a, b) => {
     if (a.desc < b.desc) return -1;
     if (a.desc > b.desc) return 1;
-    return 0;};
+    return 0;
+  };
   
   getItems(itemApi:string): void {
     this.tblName = /api\/(.+$)/.exec(itemApi);
@@ -67,10 +69,9 @@ constructor(
     'maintenanceDate' : 'Maintenance Due Date'
   }    
 
-  // Dynamically compose nested table
-  createNestedTable(id:string, elGP:Node, elP:Node, headings:any) {
+  // Dynamically compose nested table: Using Plain HTML Elements
+  createNTableHTML(id:string, elGP:Node, elP:Node, headings:any) {
 
-    /* -------- START:  C R E A T E   T A B L E
     let urlComplete = this.itemUrl + 'api/Component/' + this.tblName[1] + '/' + id;
     
     this.appService.getItems(urlComplete)
@@ -176,36 +177,43 @@ constructor(
       this.tr.appendChild(td);
       elGP.insertBefore(this.tr, elP.nextSibling); 
       // return this.tr;  
-    }); */
+    });
 
+  };
 
-    // -------- START:  T E S T
+  // Dynamically compose nested table: Using Custom HTML Elements
+  createNTableHTMLCustom(id:string, elGP:Node, elP:Node) {
+
     this.tr = document.createElement("tr");
     var td = document.createElement("td");
     td.setAttribute("colspan", "4");
-    let div = document.createElement("div");
-    
-    // Create element
-    const popupEl: NgElement & WithProperties<PopupComponent> = document.createElement('popup-element') as any;
+        
+    // Create element  
+    if( this.tblName[1] === 'Description' || 
+      this.tblName[1] === 'Owner' ||
+      this.tblName[1] === 'Status' ||
+      this.tblName[1] === 'Model/Manufacturer' ||
+      this.tblName[1] === 'Service Provider' ) { 
 
-    // Set the message
-    popupEl.message = this.tblName[1];
-    popupEl.id = id;
+      const popupEl: NgElement & WithProperties<MedComponentPopupComponent> = document.createElement('medcomponentpopup-element') as any;
+  
+      popupEl.message = this.tblName[1];
+      popupEl.id = id;
+      td.appendChild(popupEl); 
+  
+    } else if( this.tblName[1] === 'Location') {
+      
+      const popupElSystem: NgElement & WithProperties<SystemPopupComponent> = document.createElement('systempopup-element') as any;
 
-    // Add to the DOM
-    td.appendChild(popupEl);    
-       
-    /* Uncomment for testing
-    let span = document.createElement("span");
-    span.appendChild(document.createTextNode("No records to display"));
-    div.appendChild(span);
-    */ 
+      popupElSystem.message = this.tblName[1];
+      popupElSystem.id = id;
+      td.appendChild(popupElSystem); 
+    } 
 
-    td.appendChild(div);
     this.tr.appendChild(td);
     elGP.insertBefore(this.tr, elP.nextSibling); 
-    // -------- END:  T E S T
-  };
+
+  }
 
   onSelect(item: any): void {
     if (this.svSelected == item) {
@@ -248,8 +256,11 @@ constructor(
       if( !isNullOrUndefined(this.tr)) this.tr.parentNode.removeChild(this.tr);
       if( !isNullOrUndefined(this.elListSave)) this.elListSave.replace('glyphicon-minus', 'glyphicon-plus');
 
-      // appends child <table> into table <tbody>
-      this.createNestedTable(id, elGP, elP, this.headings);
+      // create nested table using regular HTML elements
+      // this.createNTableHTML(id, elGP, elP, this.headings);
+
+      // create nested table using custom HTML elements
+      this.createNTableHTMLCustom(id, elGP, elP);
  
       this.elListSave = elList;
 
