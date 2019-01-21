@@ -192,7 +192,7 @@ constructor(
     if( this.tblName[1] === 'Description' || 
       this.tblName[1] === 'Owner' ||
       this.tblName[1] === 'Status' ||
-      this.tblName[1] === 'Model/Manufacturer' ||
+      this.tblName[1] === 'Model_Manufacturer' ||
       this.tblName[1] === 'Service Provider' ) { 
 
       const popupEl: NgElement & WithProperties<MedComponentPopupComponent> = document.createElement('medcomponentpopup-element') as any;
@@ -287,18 +287,4 @@ export interface tblCommon {
   id: string;
   desc: string;
   createdAtUtc: Date;
-}
-
-export interface tblComponent {
-  id: string;
-  assetnumber: string;
-  imte: string;
-  serialnumber: string;
-  description: string;
-  owner: string;
-  status: string;
-  model_Manufacturer: string;
-  providerOfService: string;
-  calibrationDate: Date;
-  maintenanceDate: Date;
 }

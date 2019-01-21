@@ -1,5 +1,4 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { AppService } from '../app.service';
 import { BasePopupComponent } from '../popup/base.popup';
 
 @Component({
@@ -36,26 +35,6 @@ import { BasePopupComponent } from '../popup/base.popup';
 
 export class SystemPopupComponent extends BasePopupComponent implements OnInit {
   private items: tblSystem[];
-  private item: tblSystem;
-  
-  itemUrl = 'http://localhost:5000/';
-
-  _message: string;
-  _id: string; 
-  
-  @Input()
-  set message(message: string) {
-    this._message = message;
-  }
-
-  @Input()
-  set id(id: string) {
-    this._id = id;
-  }
-
-  get message(): string { return this._message; }
-  
-  get id(): string { return this._id; }
  
 ngOnInit() {
   this.getItems();
