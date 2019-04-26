@@ -2,18 +2,18 @@ import { NgModule, CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA } from '@angular/cor
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule }    from '@angular/forms';
 
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
+import { AppRoutingModule } from './app-routing.module.lr';
+import { AppComponent } from './app.component.lr';
 // import { AppComponent } from './app.component.pv';
 
-import { HttpClientModule }    from '@angular/common/http';
+import { HttpClientModule,  HTTP_INTERCEPTORS }    from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';  // needs a polyfill
 import { PageNotFoundComponent }   from './page-not-found/page-not-found.component';
 
 // TrackMED Tables
 import { BaseComponent } from './base/base.component';
 import { DescriptionComponent } from './description/description.component';
-import { HomeComponent } from './home/home.component';
+// import { HomeComponent } from './home/home.component';
 import { LocationComponent } from './location/location.component';
 import { Model_ManufacturerComponent } from './modelmanufacturer/modelmanufacturer.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
@@ -28,6 +28,17 @@ import { SystemPopupComponent } from './popup/system.popup';
 import { MatDialogModule } from '@angular/material';
 // import { BrowserAnimationsModule } from '@angular/platform-browser/animations';  // needs a polyfill
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+
+// User Login and Registration
+import { AlertComponent } from './_components';
+import { JwtInterceptor, ErrorInterceptor } from './_helpers';
+import { HomeComponent } from './home';
+import { LoginComponent } from './login';
+import { RegisterComponent } from './register';
+import { routing }        from './app-routing.module.lr';
+
+// used to create fake backend
+import { fakeBackendProvider } from './_helpers';
 
 /*
 @NgModule({
@@ -58,7 +69,15 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
   // Custom Elements
     MedComponentPopupComponent,
-    SystemPopupComponent
+    SystemPopupComponent,
+    
+  // Login and Registration
+    AppComponent,
+    AlertComponent,
+    HomeComponent,
+    LoginComponent,
+    RegisterComponent
+
   ],
 
   imports: [
@@ -69,6 +88,7 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
     FormsModule,
     ReactiveFormsModule,
     MatDialogModule,
+    routing
     /* 
     
     NoopAnimationsModule,
@@ -85,7 +105,13 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
     NO_ERRORS_SCHEMA
   ],
   // no need to place any providers due to the `providedIn` flag...
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+
+    // provider used to create fake backend
+    fakeBackendProvider
+  ],
   bootstrap: [AppComponent],
   entryComponents: [
     MedComponentPopupComponent,

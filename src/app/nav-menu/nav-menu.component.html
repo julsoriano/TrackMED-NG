@@ -1,10 +1,95 @@
+<!-- templateUrl for nav-menu.component.ts
+     associate with nav-menu.component.css -->
+
+<!-- class='main-nav' is defined only in nav-menu.component.html 
+     (ie., not in bootstrap.css) --->
 <div class='main-nav'>
+
+    <!-- 
+    .navbar {
+      display: none;
+    }
+
+    .navbar-inverse {
+      background-color: #222;
+      border-color: #080808;
+    }
+    -->
     <div class='navbar navbar-inverse'>
+        <!-- 
+        .navbar-collapse {
+          padding-right: 15px;
+          padding-left: 15px;
+          overflow-x: visible;
+          -webkit-overflow-scrolling: touch;
+          border-top: 1px solid transparent;
+          -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, .1);
+                  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .1);
+        }
+        .navbar-collapse.in {
+          overflow-y: auto;
+        }
+        @media (min-width: 768px) {
+          .navbar-collapse {
+            width: auto;
+            border-top: 0;
+            -webkit-box-shadow: none;
+                    box-shadow: none;
+          }
+          .navbar-collapse.collapse {
+            display: block !important;
+            height: auto !important;
+            padding-bottom: 0;
+            overflow: visible !important;
+          }
+          .navbar-collapse.in {
+            overflow-y: visible;
+          }  
+
+          [ngClass], See https://toddmotto.com/ng-class-angular-classes
+        -->
         <div class='navbar-collapse collapse' [ngClass]='{ "in": isExpanded }'>
+
+            <!--
+            nav,
+              section,
+              summary {
+                display: block;
+              }
+            .navbar-nav > li > a {
+              padding-top: 10px;
+              padding-bottom: 10px;
+              line-height: 20px;
+            }  
+            -->
             <ul class='nav navbar-nav' *ngFor="let table of tables">
+
+              <!-- class='link-active' is defined only in nav-menu.component.html 
+                  (ie., not in bootstrap.css) --->
               <li [routerLinkActive]='["link-active"]'>
                 <a routerLink="/{{table.name}}" (click)='collapse()'>
-                  <span class='glyphicon glyphicon-list'>{{table.id}}</span>  {{table.name}}
+
+                  <!--
+                  .glyphicon {
+                    position: relative;
+                    top: 1px;
+                    display: inline-block;
+                    font-family: 'Glyphicons Halflings';
+                    font-style: normal;
+                    font-weight: normal;
+                    line-height: 1;
+
+                    -webkit-font-smoothing: antialiased;
+                    -moz-osx-font-smoothing: grayscale;
+                  }
+                  .glyphicon-list:before {
+                    content: "\e056";
+                  } 
+                  .glyphicon-list-alt:before {
+                    content: "\e032";
+                  }
+                  -->
+                  <span class='glyphicon glyphicon-list-alt'>{{table.id}}</span>  {{table.name}}
                 </a>
               </li>
             </ul>

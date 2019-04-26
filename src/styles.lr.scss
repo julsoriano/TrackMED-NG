@@ -2,7 +2,7 @@
 
 /* https://material.angular.io/guide/theming */
 // @import '../node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css'; 
-@import '../node_modules/bootstrap/dist/css/bootstrap.css';
+// @import '../node_modules/bootstrap/dist/css/bootstrap.css';
 @import './app/tables.component.scss';
 @import '../src/styles.1.scss';
 
@@ -30,3 +30,5 @@ body {
     padding-left: 15px;
     padding-right: 15px;
 }
+
+  
