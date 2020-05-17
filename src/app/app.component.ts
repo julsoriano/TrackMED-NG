@@ -35,5 +35,5 @@ export class AppComponent {
 
   }
   
-  title = 'TrackMED-NG';
+  title = 'TrackMED-NG8-BS3';
 }

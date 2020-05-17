@@ -2,7 +2,6 @@ import { Component, OnInit, Inject } from '@angular/core';
 //import { AppInjector } from '../app-injector.service';
 import { AppService } from '../app.service';
 import { isNullOrUndefined } from 'util';
-//import { type } from 'os';
 
 import { MedComponentPopupComponent } from '../popup/medcomponent.popup';
 import { SystemPopupComponent } from '../popup/system.popup';
@@ -11,13 +10,10 @@ import { NgElement, WithProperties } from '@angular/elements';
 @Component({
   selector: 'app-base',
   templateUrl: './base.component.html',
-  // styleUrls: ['./base.component.scss']
 })
 
 // Discussion: https://blogs.msdn.microsoft.com/premier_developer/2018/06/17/angular-how-to-simplify-components-with-typescript-inheritance/
 export class BaseComponent {
-
-  // protected loggingService: LoggingService;
   
   private items: tblCommon[];
   private item: tblCommon;
@@ -29,8 +25,9 @@ export class BaseComponent {
   private tr: Element;
   private elListSave: any;
 
+
 constructor(
-  protected appService: AppService,
+  protected appService: AppService, // protected loggingService: LoggingService;
 ) 
 {    
   // Manually retrieve the dependencies from the injector so that constructor has no dependencies that must be passed in from child
@@ -67,13 +64,22 @@ constructor(
     'providerOfService' : 'Service Provider',
     'calibrationDate' : 'Calibration Due Date',
     'maintenanceDate' : 'Maintenance Due Date'
+  } 
+  
+  headingsSystem: any = {
+    'imte' : 'IMTE',
+    'referenceNo': 'Reference Number',
+    'systemsDescription' : 'System Description',
+    'location' : 'Location',
+    'deploymentDate' : 'Deployment Date',
   }    
 
   // Dynamically compose nested table: Using Plain HTML Elements
   createNTableHTML(id:string, elGP:Node, elP:Node, headings:any) {
 
     let urlComplete = this.itemUrl + 'api/Component/' + this.tblName[1] + '/' + id;
-    
+    if(this.tblName[1] == 'Location') urlComplete = this.itemUrl + 'api/SystemTab/' + this.tblName[1] + '/' + id;
+
     this.appService.getItems(urlComplete)
       .subscribe(data => {
  
@@ -142,7 +148,9 @@ constructor(
           cell = document.createElement("td");
           cell.style.color = "red";
           if( headings[key] === 'Description' || 
+            headings[key] === 'System Description' || 
             headings[key] === 'Owner' ||
+            headings[key] === 'Location' ||
             headings[key] === 'Status' ||
             headings[key] === 'Model/Manufacturer' ||
             headings[key] === 'Service Provider' ) {
@@ -151,7 +159,8 @@ constructor(
             cellText = x[key] !== null ? document.createTextNode(x[key].desc) : document.createTextNode('');
 
           } else if( headings[key] === 'Calibration Due Date' || 
-                     headings[key] === 'Maintenance Due Date')  {
+                     headings[key] === 'Maintenance Due Date' || 
+                     headings[key] === 'Deployment Date')  {
                      
                     // this will be placed on the next column in sequence
                      cellText = x[key] !== null ? document.createTextNode( new Date(x[key]).toLocaleDateString('en-GB', options) ) : document.createTextNode('');                        
@@ -257,10 +266,10 @@ constructor(
       if( !isNullOrUndefined(this.elListSave)) this.elListSave.replace('glyphicon-minus', 'glyphicon-plus');
 
       // create nested table using regular HTML elements
-      // this.createNTableHTML(id, elGP, elP, this.headings);
+      this.tblName[1] == 'Location' ? this.createNTableHTML(id, elGP, elP, this.headingsSystem) : this.createNTableHTML(id, elGP, elP, this.headings);
 
       // create nested table using custom HTML elements
-      this.createNTableHTMLCustom(id, elGP, elP);
+      // this.createNTableHTMLCustom(id, elGP, elP);
  
       this.elListSave = elList;
 

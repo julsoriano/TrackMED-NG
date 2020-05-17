@@ -1,11 +1,10 @@
-<!-- The <router-outlet> tells the router where to display routed views. https://angular.io/tutorial/toh-pt5. -->
-<!-- <app-messages></app-messages> -->
-<div style="text-align:center">
+<!--<div style="text-align:center">
   <h1>
-    Welcome to {{ title }}!
+    {{ title }}!
   </h1>
-</div>
+</div> -->
 
+<!-- All nav classess are defined in Bootstrap.3.3.7 '../node_modules/bootstrap/dist/css/bootstrap.css' -->
 <div class='navbar navbar-inverse navbar-fixed-top'> 
   <div class='navbar-header'>
       <button type='button' class='navbar-toggle' data-toggle='collapse' data-target='.navbar-collapse' [attr.aria-expanded]='isExpanded' (click)='toggle()'>
@@ -14,7 +13,7 @@
           <span class='icon-bar'></span>
           <span class='icon-bar'></span>
       </button>
-      <a class='navbar-brand' [routerLink]='["/"]'>TrackMED-NG</a>
+      <a class='navbar-brand' [routerLink]='["/"]'>Track Medical Equipment</a>
   </div>
   <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
@@ -22,7 +21,7 @@
           <li><a [routerLink]='["/About"]'>About</a></li>
           <li><a [routerLink]='["/Contact"]'>Contact</a></li>
       </ul>
-      <!--
+      <!-- Uncomment when Login/Registration is implemented
       <ul class="nav navbar-nav navbar-right">
         <li><a [routerLink]='["/Login"]'>Login</a></li>
         <li><a [routerLink]='["/Register"]'>Register</a></li>
@@ -31,6 +30,7 @@
   <div class='clearfix'></div>
 </div>
 
+<!-- The <router-outlet> tells the router where to display routed views. https://angular.io/tutorial/toh-pt5. -->
 <div class='container-fluid'>
   <div class='row'>
     <div class='col-sm-3'>
@@ -44,4 +44,21 @@
       </footer>
     </div>
   </div>
-</div>
+</div> 
+
+<!--
+<div class='container-fluid'>
+  <div class="row">
+    <div class="col-sm-6" style="background-color:yellow;">
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.<br>
+      Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+    </div>
+    <div class="col-sm-6" style="background-color:pink;">
+      Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.
+      <hr /> 
+      <footer>
+          <p>&copy; 2018 - J. Soriano</p>
+      </footer>
+    </div>
+  </div>
+</div> -->
