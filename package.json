@@ -26,7 +26,7 @@
     "@angular/upgrade": "^8.2.14",
     "@webcomponents/custom-elements": "^1.2.1",
     "angular-in-memory-web-api": "^0.10.0",
-    "bootstrap": "^3.3.7",
+    "bootstrap": "^3.4.1",
     "core-js": "^2.5.4",
     "node-sass": "^4.13.1",
     "rxjs": "~6.5.5",
